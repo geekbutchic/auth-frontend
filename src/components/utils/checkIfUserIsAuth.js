@@ -1,7 +1,7 @@
 import jwtDecode from "jwt-decode";
 
-const checkIfUserIsAuth = () => {
-  //check if token exists, if it doesnt exists return false
+const checkIfUserIsAuth = () => {//CHECKS IF TOKEN IS NON-EXISTENT - NOT EXPIRED - ALLOWS USER TO REMAIN LOGGED IN OR NOT
+  //check if token exists, if it doesn't exists return false
   //if it does exists, check if token valid (meaning not expired)
   //if expired return false
   //else return true

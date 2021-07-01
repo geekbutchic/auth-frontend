@@ -6,8 +6,9 @@ import Axios from "../utils/Axios";
 import checkIfUserIsAuth from "../utils/checkIfUserIsAuth";
 import "./Signup.css";
 
+//PARENT COMPONENT
 export class Signup extends Component {
-  state = {
+  state = {// SETS THE STATE
     firstName: "",
     lastName: "",
     username: "",
@@ -29,15 +30,15 @@ export class Signup extends Component {
     confirmPasswordOnFocus: false,
   };
 
-  componentDidMount() {
+  componentDidMount() {//FUNCTIONS CHECKS IF IS AUTHORIZED USER
     let isAuth = checkIfUserIsAuth();
 
     if (isAuth) {
-      this.props.history.push("/movie");
+      this.props.history.push("/movie");//IF AUTHORIZED PUSH TO MOVIE SEARCH
     }
   }
 
-  handleOnChange = (event) => {
+  handleOnChange = (event) => {//CHECKS IF USER IS VALID + IF THEY SUBMITTED ALL THE PROPER INFORMATION
     this.setState(
       {
         [event.target.name]: event.target.value,
@@ -68,20 +69,20 @@ export class Signup extends Component {
     );
   };
 
-  handleConfirmPasswordInput = () => {
+  handleConfirmPasswordInput = () => {// CHECKS PASSWORD
     if (this.state.password !== this.state.confirmPassword) {
       this.setState({
         confirmPasswordError: "Password does not match!",
         isButtonDisabled: true,
       });
     } else {
-      this.setState({
+      this.setState({//IF PASSWORD CORRECT NO ERROR
         confirmPasswordError: "",
       });
     }
   };
 
-  handlePasswordInput = () => {
+  handlePasswordInput = () => {//CHECKS IF PASSWORD + SIMILAR FUNCTION TO BACKEND 
     if (this.state.confirmPasswordOnFocus) {
       if (this.state.password !== this.state.confirmPassword) {
         this.setState({
@@ -89,7 +90,7 @@ export class Signup extends Component {
           isButtonDisabled: true,
         });
       } else {
-        this.setState({
+        this.setState({// IF MATCHES NO ERROR
           confirmPasswordError: "",
         });
       }
@@ -101,12 +102,12 @@ export class Signup extends Component {
         isButtonDisabled: true,
       });
     } else {
-      if (isStrongPassword(this.state.password)) {
+      if (isStrongPassword(this.state.password)) {// CHECK WITH VALIDATOR
         this.setState({
           passwordError: "",
         });
       } else {
-        this.setState({
+        this.setState({//ERROR MESSAGE OF IN PROPER PASSWORD FORMAT
           passwordError:
             "Password must contains 1 uppercase, 1 lowercase, 1 special character, 1 number and minimul of 8 charactors long",
           isButtonDisabled: true,
@@ -115,14 +116,14 @@ export class Signup extends Component {
     }
   };
 
-  handleEmailInput = () => {
+  handleEmailInput = () => {//CHECKS EMAIL INPUT 
     if (this.state.email.length === 0) {
       this.setState({
-        emailError: "Email cannot be empty",
+        emailError: "Email cannot be empty",//CHECKS IF EMPTY 
         isButtonDisabled: true,
       });
     } else {
-      if (isEmail(this.state.email)) {
+      if (isEmail(this.state.email)) {//REQUIRES IN VALIDATOR
         this.setState({
           emailError: "",
         });
@@ -135,7 +136,7 @@ export class Signup extends Component {
     }
   };
 
-  handleFirstNameAndLastNameInput = (event) => {
+  handleFirstNameAndLastNameInput = (event) => {//PASSWORD CHECKS IF NOT UNDEFINED AND IS ALPHA
     if (this.state[event.target.name].length > 0) {
       if (isAlpha(this.state[event.target.name])) {
         this.setState({
@@ -155,19 +156,19 @@ export class Signup extends Component {
     }
   };
 
-  handleUsernameInput = () => {
+  handleUsernameInput = () => {//CHECKS IS USERNAME IS NOT EMPTY AND IS ALPHANUMERIC - SIMILAR TO A BACKEND FUNCTION WE USED
     if (this.state.username.length === 0) {
       this.setState({
         usernameError: "Username cannot be empty",
         isButtonDisabled: true,
       });
     } else {
-      if (isAlphanumeric(this.state.username)) {
+      if (isAlphanumeric(this.state.username)) {//IF TRUE NO ERROR MESSAGE
         this.setState({
           usernameError: "",
         });
       } else {
-        this.setState({
+        this.setState({//GIVES ERROR MESSAGE 
           usernameError: "Username can only have alphabet and number",
           isButtonDisabled: true,
         });
@@ -175,18 +176,18 @@ export class Signup extends Component {
     }
   };
 
-  handleOnSubmit = async (event) => {
+  handleOnSubmit = async (event) => {//HANDLES THE CHANGES OF INPUT BEING SUBMITTED
     event.preventDefault();
 
     try {
-      let userInputObj = {
+      let userInputObj = {//SETS VALUES
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
         username: this.state.username,
         password: this.state.password,
       };
-      let success = await Axios.post("/api/user/sign-up", userInputObj);
+      let success = await Axios.post("/api/user/sign-up", userInputObj);//SUCCESS OF USER MESSAGE SIGN UP
       console.log(success);
       toast.success(`${success.data.message}`);
     } catch (e) {
@@ -194,7 +195,7 @@ export class Signup extends Component {
     }
   };
 
-  handleOnBlur = (event) => {
+  handleOnBlur = (event) => {//IF POINTER LEAVES FUNCTION
     // console.log(event.target.name);
     // console.log("handle onBlur Triggered");
 
@@ -205,7 +206,7 @@ export class Signup extends Component {
     }
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {//SET STATES TO COMPARE FOR UPDATES
     console.log(prevState.isButtonDisabled);
 
     if (prevState.isButtonDisabled === true) {
@@ -234,7 +235,7 @@ export class Signup extends Component {
     }
   }
 
-  handleInputOnFocus = (event) => {
+  handleInputOnFocus = (event) => {//ALLOWS INPUT TO INJECT INTO INPUT FORM VALUE
     if (!this.state[`${event.target.name}OnFocus`]) {
       this.setState({
         [`${event.target.name}OnFocus`]: true,
@@ -242,7 +243,7 @@ export class Signup extends Component {
     }
   };
 
-  render() {
+  render() {// BELOW IS PROPS WITHIN DIV'S - INPUT FIELDS - PASSING IN OUR FUNCTIONS WITH ON ON_CLICK
     const {
       firstName,
       lastName,
@@ -260,7 +261,7 @@ export class Signup extends Component {
 
     console.log(this.props);
 
-    return (
+    return (// OUR RENDER OF INFORMATION
       <div className="container">
         <div className="form-text">Sign up</div>
 

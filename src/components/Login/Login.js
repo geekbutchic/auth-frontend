@@ -7,7 +7,7 @@ import Axios from "../utils/Axios";
 import checkIfUserIsAuth from "../utils/checkIfUserIsAuth";
 
 import "./Login.css";
-export class Login extends Component {
+export class Login extends Component {//LOGIN PAGE 
   state = {
     email: "",
     emailError: "",
@@ -18,7 +18,7 @@ export class Login extends Component {
     canSubmit: true,
   };
 
-  componentDidMount() {
+  componentDidMount() {//CHECKS IF AUTHORIZED USER AND PREVENTS USER FROM BYPASSING PROPER SIGN UP
     let isAuth = checkIfUserIsAuth();
 
     if (isAuth) {
@@ -26,7 +26,7 @@ export class Login extends Component {
     }
   }
 
-  handleOnChange = (event) => {
+  handleOnChange = (event) => {//CHECKS EMAIL
     this.setState(
       {
         [event.target.name]: event.target.value,
@@ -45,7 +45,7 @@ export class Login extends Component {
           }
         }
 
-        if (event.target.name === "password") {
+        if (event.target.name === "password") {//CHECKS PASSWORD
           if (isEmpty(this.state.password)) {
             this.setState({
               passwordError: "Password cannot be empty",
@@ -61,7 +61,7 @@ export class Login extends Component {
     );
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {//CHECKS IF INPUT IS TRUE
     if (prevState.canSubmit === true) {
       if (this.state.emailOnFocus && this.state.passwordOnFocus) {
         if (
@@ -89,7 +89,7 @@ export class Login extends Component {
   };
 
   handleOnSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault();//CLEARS INPUT FORM 
 
     try {
       let result = await Axios.post("/api/user/login", {
@@ -118,7 +118,7 @@ export class Login extends Component {
     }
   };
 
-  render() {
+  render() {//LOGIN FORM - PROPS WITHIN DIVS - WITH INPUT FIELDS
     const { email, emailError, password, passwordError, canSubmit } =
       this.state;
 

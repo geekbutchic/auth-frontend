@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const Axios = axios.create({
+const Axios = axios.create({// OUR HOST CONNECTION
   baseURL:
     process.env.NODE_ENV === "development"
       ? "http://localhost:8080"

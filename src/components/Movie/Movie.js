@@ -8,13 +8,13 @@ export class Movie extends Component {
     movieArray: [],
   };
 
-  handleOnChange = (event) => {
+  handleOnChange = (event) => {//HANDLES INPUTS
     this.setState({
       movie: event.target.value,
     });
   };
 
-  onSubmit = async (event) => {
+  onSubmit = async (event) => {//CALLS API - GET REQUEST 
     try {
       let result = await axios.get(
         `https://omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_API}&s=${this.state.movie}`
@@ -30,7 +30,7 @@ export class Movie extends Component {
     }
   };
 
-  showMovieList = () => {
+  showMovieList = () => {//LOOPS THROUGH MOVIE JSON 
     return this.state.movieArray.map((item) => {
       return (
         <div

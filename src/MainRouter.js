@@ -8,9 +8,10 @@ import Nav from "./components/Nav/Nav";
 import Movie from "./components/Movie/Movie";
 import MovieDetail from "./components/Movie/MovieDetail";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+//ROUTES OF DIFFERENT FOLDERS AND FILES 
 
 const MainRouter = (props) => {
-  return (
+  return (//PRIVATE ROUTES TO PREVENT UNAUTHORIZED USERS FROM ACCESSING APPLICATION WITHOUT PROPER SIGN-UP
     <Router>
       <Nav user={props.user} handleUserLogout={props.handleUserLogout} />
       <>

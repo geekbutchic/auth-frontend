@@ -2,8 +2,8 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import checkIfUserIsAuth from "../utils/checkIfUserIsAuth";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  return (
+const PrivateRoute = ({ component: Component, ...rest }) => {//SUPER CONFUSING NOT SURE NEED TO REVIEW VIDEO
+  return (//IF BELIEVE CHECKS IF USER IS AUTHORIZED IF NOT SEND TO LOGIN PAGE - USES SPREAD OPERATOR
     <Route
       {...rest}
       render={(routerProps) =>

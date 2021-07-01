@@ -14,3 +14,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+
+//STANDARD REACTS FILE SETS UP APP RENDER

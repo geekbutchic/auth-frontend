@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export class MovieDetail extends Component {
+export class MovieDetail extends Component {//WHAT WE ARE REQUESTING FROM API
   state = {
     Actors: "",
     Awards: "",
@@ -17,11 +17,11 @@ export class MovieDetail extends Component {
 
   async componentDidMount() {
     try {
-      let result = await axios.get(
+      let result = await axios.get(//DYNAMIC API REQUEST NOT HARD CODED
         `https://omdbapi.com/?apikey=6332b1e1&t=${this.props.match.params.movieTitle}`
       );
 
-      this.setState({
+      this.setState({//DATA THAT IS BEING PASSED ABOUT THE MOVIE TO THE DOM - SETTING THE STATE
         Actors: result.data.Actors,
         Awards: result.data.Awards,
         Country: result.data.Country,
@@ -40,7 +40,7 @@ export class MovieDetail extends Component {
     }
   }
 
-  showMovieDetail = () => {
+  showMovieDetail = () => {//MOVIE DETAIL INFORMATION - TO DISPLAY ON THE DOM
     return (
       <div style={{ display: "flex" }}>
         <div>

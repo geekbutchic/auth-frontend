@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { ToastContainer } from "react-toastify";
 import jwtDecode from "jwt-decode";
+// JWT TOKEN - TOAST MESSAGE - AND REACT COMPONENT
 
-import MainRouter from "./MainRouter";
+import MainRouter from "./MainRouter"; // REQUIRE IN OUR ROUTER 
 
 import "./App.css";
 
@@ -11,10 +12,10 @@ export class App extends Component {
     user: null,
   };
 
-  componentDidMount() {
+  componentDidMount() {//SAVES TOKEN IN LOCAL STORAGE
     let getJwtToken = window.localStorage.getItem("jwtToken");
 
-    if (getJwtToken) {
+    if (getJwtToken) {//TOKEN PARAMS
       const currentTime = Date.now() / 1000;
 
       let decodedJWTToken = jwtDecode(getJwtToken);
@@ -35,7 +36,7 @@ export class App extends Component {
     }
   }
 
-  handleUserLogin = (user) => {
+  handleUserLogin = (user) => {//HANDLES USER LOGIN INPUT
     this.setState({
       user: {
         email: user.email,
@@ -43,7 +44,7 @@ export class App extends Component {
     });
   };
 
-  handleUserLogout = () => {
+  handleUserLogout = () => {//HANDLES USER LOGOUT - AND REMOVES TOKEN FROM LOCAL STORAGE
     window.localStorage.removeItem("jwtToken");
     this.setState({
       user: null,

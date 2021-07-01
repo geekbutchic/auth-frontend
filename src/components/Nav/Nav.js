@@ -5,7 +5,7 @@ export class Nav extends Component {
   render() {
     //console.log(this.props);
 
-    return (
+    return (//RENDER WITH PROPS - INPUT DIV'S - AND SOME STYLING
       <nav className="Navbar">
         <div className="h1-logo">
           <h1>
